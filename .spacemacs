@@ -31,27 +31,29 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
      auto-completion
      emacs-lisp
      git
+     html
+     helm
+     (latex :variables
+            latex-build-command "LatexMk")
      markdown
-     syntax-checking
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
      (scala :variables
             ensime-startup-notification nil
             scala-auto-start-ensime t
-            scala-enable-eldoc t)
-     (latex :variables
-            latex-build-command "LatexMk")
+            scala-enable-eldoc t
+            scala-indent:use-javadoc-style t)
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     sql
+     syntax-checking
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -303,7 +305,9 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq-default create-lockfiles nil))
+  (setq-default create-lockfiles nil)
+  (setq flycheck-scalastyle-jar "/usr/share/java/scalastyle/scalastyle_2.11-1.0.0-batch.jar")
+  (setq flycheck-scalastylerc "/usr/share/java/scalastyle/scalastyle_config.xml"))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -323,7 +327,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (spinner epl flx anzu bind-map auto-complete popup smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor mmm-mode markdown-toc markdown-mode gh-md web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data which-key use-package toc-org spaceline powerline shell-pop restart-emacs rainbow-delimiters persp-mode org-plus-contrib neotree move-text link-hint info+ hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-swoop helm-projectile helm-make projectile helm-flx helm-company google-translate flycheck-pos-tip flycheck fill-column-indicator eyebrowse expand-region exec-path-from-shell evil-surround evil-search-highlight-persist evil-nerd-commenter evil-mc evil-matchit evil-exchange evil-escape evil-ediff eshell-prompt-extras esh-help ensime sbt-mode scala-mode dumb-jump diminish define-word auto-compile packed auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link avy auctex company highlight iedit smartparens f s dash evil goto-chg undo-tree yasnippet helm helm-core async hydra xterm-color ws-butler winum volatile-highlights vi-tilde-fringe uuidgen request pos-tip popwin pkg-info pcre2el parent-mode paradox org-bullets open-junk-file noflet multi-term macrostep lorem-ipsum linum-relative indent-guide hide-comnt help-fns+ helm-themes helm-mode-manager helm-descbinds helm-c-yasnippet helm-ag golden-ratio fuzzy flx-ido fancy-battery evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-numbers evil-lisp-state evil-indent-plus evil-iedit-state evil-args evil-anzu eval-sexp-fu eshell-z elisp-slime-nav company-statistics company-auctex column-enforce-mode clean-aindent-mode bind-key auto-yasnippet auto-highlight-symbol ace-jump-helm-line ac-ispell))))
+    (sql-indent spinner epl flx anzu bind-map auto-complete popup smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor mmm-mode markdown-toc markdown-mode gh-md web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data which-key use-package toc-org spaceline powerline shell-pop restart-emacs rainbow-delimiters persp-mode org-plus-contrib neotree move-text link-hint info+ hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-swoop helm-projectile helm-make projectile helm-flx helm-company google-translate flycheck-pos-tip flycheck fill-column-indicator eyebrowse expand-region exec-path-from-shell evil-surround evil-search-highlight-persist evil-nerd-commenter evil-mc evil-matchit evil-exchange evil-escape evil-ediff eshell-prompt-extras esh-help ensime sbt-mode scala-mode dumb-jump diminish define-word auto-compile packed auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link avy auctex company highlight iedit smartparens f s dash evil goto-chg undo-tree yasnippet helm helm-core async hydra xterm-color ws-butler winum volatile-highlights vi-tilde-fringe uuidgen request pos-tip popwin pkg-info pcre2el parent-mode paradox org-bullets open-junk-file noflet multi-term macrostep lorem-ipsum linum-relative indent-guide hide-comnt help-fns+ helm-themes helm-mode-manager helm-descbinds helm-c-yasnippet helm-ag golden-ratio fuzzy flx-ido fancy-battery evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-numbers evil-lisp-state evil-indent-plus evil-iedit-state evil-args evil-anzu eval-sexp-fu eshell-z elisp-slime-nav company-statistics company-auctex column-enforce-mode clean-aindent-mode bind-key auto-yasnippet auto-highlight-symbol ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
