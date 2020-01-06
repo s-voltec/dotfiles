@@ -48,6 +48,7 @@ values."
             ensime-startup-notification nil
             scala-auto-start-ensime t
             scala-enable-eldoc t
+            scala-auto-insert-asterisk-in-comments t
             scala-indent:use-javadoc-style t)
      (shell :variables
             shell-default-height 30
@@ -141,7 +142,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Han Code JP"
-                               :size 13
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -312,7 +313,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (push '("ensime" . "melpa-stable") package-pinned-packages)
   (setq-default create-lockfiles nil)
   (setq flycheck-scalastyle-jar "/usr/share/java/scalastyle/scalastyle_2.11-1.0.0-batch.jar")
-  (setq flycheck-scalastylerc "/usr/share/java/scalastyle/scalastyle_config.xml"))
+  (setq flycheck-scalastylerc "scalastyle_config.xml"))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
